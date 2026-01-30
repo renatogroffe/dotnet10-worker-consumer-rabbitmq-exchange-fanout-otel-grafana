@@ -12,7 +12,6 @@ public class Worker(ILogger<Worker> logger,
     IConfiguration configuration) : BackgroundService
 {
     private static readonly TextMapPropagator Propagator = new TraceContextPropagator();
-
     private readonly string _queueName = configuration["RabbitMQ:Queue"]!;
     private readonly string _exchangeName = configuration["RabbitMQ:Exchange"]!;
     private readonly int _intervaloMensagemWorkerAtivo =
