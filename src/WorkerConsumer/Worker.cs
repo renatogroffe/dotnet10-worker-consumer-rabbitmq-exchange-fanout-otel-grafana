@@ -85,8 +85,8 @@ public class Worker(ILogger<Worker> logger,
         activity?.SetTag("messaging.operation", "ack");
         activity?.SetTag("messaging.destination.name", $"{_exchangeName}:{_queueName}");
         activity?.SetTag("messaging.operation.type", "receive");
-        activity?.SetTag("messaging.message.id", e.BasicProperties?.MessageId ?? "unknown");
         activity?.SetTag("body", messageContent);        
+        activity?.SetTag("propagation_id", parentContext.ActivityContext.TraceId.ToString());        
 
         // Simular processamento
         await Task.CompletedTask;
