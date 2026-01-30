@@ -11,8 +11,6 @@ namespace WorkerConsumer;
 public class Worker(ILogger<Worker> logger,
     IConfiguration configuration) : BackgroundService
 {
-    public static readonly string ActivitySourceName = "WorkerConsumer.RabbitMQ";
-    private static readonly ActivitySource ActivitySource = new(ActivitySourceName);
     private static readonly TextMapPropagator Propagator = new TraceContextPropagator();
 
     private readonly string _queueName = configuration["RabbitMQ:Queue"]!;
